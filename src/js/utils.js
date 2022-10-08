@@ -25,5 +25,13 @@ export function setClick(selector, callback) {
 export function getParams() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  return urlParams.get('product') 
+  return urlParams.get('product');
+}
+
+export function renderListWithTemplate(template, parent, list, callback) {
+  list.forEach((item) => {
+    const clone = template.content.cloneNode(true);
+    const templateWithData = callback(clone, item);
+    parent.appendChild(templateWithData);
+  });
 }

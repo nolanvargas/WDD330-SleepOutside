@@ -7,7 +7,7 @@ module.exports = {
   },
   buildOptions: {
     out: 'build',
-    baseUrl: '/sleepoutside/build/',
+    baseUrl: '/WDD330-SLEEPOUTSIDE/build/',
     clean: true,
   },
   experiments: {
