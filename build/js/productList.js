@@ -9,7 +9,9 @@ export default class ProductList {
   }
   async init() {
     // our dataSource will return a Promise...so we can use await to resolve it.
-    const list = await this.dataSource.getData();
+    let list = await this.dataSource.getData();
+    console.log(list);
+    list = this.filterProducts(list);
     this.renderList(list);
   }
 
@@ -35,5 +37,10 @@ export default class ProductList {
       list,
       this.prepareTemplate
     );
+  }
+
+  filterProducts(products) {
+    const tents = ['880RR', '985RF', '985PR', '344YJ'];
+    return products.filter((product) => tents.includes(product.Id));
   }
 }
