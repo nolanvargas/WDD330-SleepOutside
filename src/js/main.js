@@ -2,6 +2,7 @@ import ProductData from './productData.js';
 import ProductListing from './productList.js';
 import { loadHeaderFooter } from './utils.js';
 
+
 loadHeaderFooter();
 
 const dataSource = new ProductData('tents');
