@@ -5,14 +5,7 @@ import ProductDetails from './productDetails.js';
 const dataSource = new ProductData('tents');
 const productId = getParams('product');
 const product = new ProductDetails(productId, dataSource);
-console.log(await dataSource.findProductById(productId));
 product.init();
-
-button = document.getElementById('addToCart');
-
-button.addEventListener('click', () => {
-  console.log('hello');
-});
 
 function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
