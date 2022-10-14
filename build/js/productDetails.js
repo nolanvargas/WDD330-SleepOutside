@@ -1,39 +1,4 @@
-import { setLocalStorage } from './utils.js';
-
-export default class ProductDetails {
-  constructor(productId, dataSource) {
-    this.productId = productId;
-    this.product = {};
-    this.dataSource = dataSource;
-  }
-
-  async init() {
-    // dataSource is instance of productData class. Returns the data from the JSON file for now
-    this.product = await this.dataSource.findProductById(this.productId);
-
-    //render the information from the product using our own renderProductDetails method
-    document.querySelector('main').innerHTML = this.renderProductDetails();
-
-    //take the button in out html and add a click event which calls our own addToCart() method
-    document
-      .getElementById('addToCart')
-      .addEventListener('click', this.addToCart.bind(this));
-  }
-
-  addToCart() {
-    //utils.js has several functions, one of which sets the local storage to contain some json data
-    //another function can retrieve this data too.
-    setLocalStorage('so-cart', this.product);
-  }
-
-  renderProductDetails() {
-    //ngl I copy pasted this one. Basically we can go to our product-details.html starting at line 45
-    //and strip all the html from there and replace the values dynamically using the data we have here,
-    //and then return this back to the html file.
-    //When doing this, it is important to make sure that the product.html file does not already
-    //contain html to load, as it will load that html first, and then change them to these, causing
-    //the page to load 2 different things in a split second.
-    return `<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>
+var a=(c,r,d)=>new Promise((e,s)=>{var u=t=>{try{i(d.next(t))}catch(o){s(o)}},p=t=>{try{i(d.throw(t))}catch(o){s(o)}},i=t=>t.done?e(t.value):Promise.resolve(t.value).then(u,p);i((d=d.apply(c,r)).next())});import{setLocalStorage as l}from"./utils.js";export default class n{constructor(r,d){this.productId=r,this.product={},this.dataSource=d}init(){return a(this,null,function*(){this.product=yield this.dataSource.findProductById(this.productId),document.querySelector("main").innerHTML=this.renderProductDetails(),document.getElementById("addToCart").addEventListener("click",this.addToCart.bind(this))})}addToCart(){l("so-cart",this.product)}renderProductDetails(){return`<section class="product-detail"> <h3>${this.product.Brand.Name}</h3>
         <h2 class="divider">${this.product.NameWithoutBrand}</h2>
         <img
           class="divider"
@@ -47,6 +12,4 @@ export default class ProductDetails {
         </p>
         <div class="product-detail__add">
           <button id="addToCart" data-id="${this.product.Id}">Add to Cart</button>
-        </div></section>`;
-  }
-}
+        </div></section>`}}

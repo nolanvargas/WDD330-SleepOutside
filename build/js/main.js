@@ -1,8 +1,1 @@
-import ProductData from './productData.js';
-import ProductListing from './productList.js';
-
-const dataSource = new ProductData('tents');
-const listElement = document.querySelector('.product-list');
-const myList = new ProductListing('tents', dataSource, listElement);
-
-myList.init();
+import o from"./productData.js";import r from"./productList.js";import{loadHeaderFooter as t}from"./utils.js";console.log(t()),t();const e=new o("tents"),s=document.querySelector(".product-list"),c=new r("tents",e,s);c.init();

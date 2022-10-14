@@ -58,11 +58,12 @@ export async function loadTemplate(path) {
   template.innerHTML = html;
   return template;
 }
-
+debugger
 export async function loadHeaderFooter() {
   const header = await loadTemplate('../partials/header.html');
   const footer = await loadTemplate('../partials/footer.html');
 
+  console.log("i am being called twice");
   const headerElement = document.getElementById('main-header');
   const footerElement = document.getElementById('main-footer');
 
