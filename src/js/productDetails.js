@@ -1,4 +1,4 @@
-import { setLocalStorage } from './utils.js';
+import { setLocalStorage, getLocalStorage } from './utils.js';
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -23,7 +23,10 @@ export default class ProductDetails {
   addToCart() {
     //utils.js has several functions, one of which sets the local storage to contain some json data
     //another function can retrieve this data too.
-    setLocalStorage('so-cart', this.product);
+    //cart is the cart array in local storage. If there is no cart array, then the empty array is returned=
+    let cart = getLocalStorage('so-cart') || [];
+    cart.push(this.product);
+    setLocalStorage('so-cart', cart);
   }
 
   renderProductDetails() {
