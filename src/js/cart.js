@@ -2,17 +2,6 @@ function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
 
-function addToCart() {
-  //get the key from the url
-  let cart = localStorage.getItem('cart');
-  if (cart === null) {
-    localStorage.setItem('cart', []);
-    cart = localStorage.getItem('cart');
-  }
-  console.log(cart);
-  //localStorage.setItem
-}
-
 function getCartContents() {
   let markup = '';
   const cartItems = getLocalStorage('so-cart');

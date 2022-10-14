@@ -9,6 +9,7 @@ module.exports = {
     out: 'build',
     baseUrl: '/WDD330-SLEEPOUTSIDE/build/',
     clean: true,
+    htmlFragments: true,
   },
   experiments: {
     optimize: {
