@@ -8,6 +8,12 @@ const product = new ProductDetails(productId, dataSource);
 console.log(await dataSource.findProductById(productId));
 product.init();
 
+button = document.getElementById('addToCart');
+
+button.addEventListener('click', () => {
+  console.log('hello');
+});
+
 function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
