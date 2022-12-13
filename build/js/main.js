@@ -1,1 +1,3 @@
-import o from"./productData.js";import r from"./productList.js";import{loadHeaderFooter as t}from"./utils.js";console.log(t()),t();const e=new o("tents"),s=document.querySelector(".product-list"),c=new r("tents",e,s);c.init();
+import { loadHeaderFooter } from "./utils.js";
+
+loadHeaderFooter();

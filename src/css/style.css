@@ -1,6 +1,6 @@
 :root {
   --font-body: Arial, Helvetica, sans-serif;
-  --font-headline: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
   /* colors */
   --primary-color: #f0a868;
   --secondary-color: #525b0f;
@@ -29,6 +29,9 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
+}
+main {
+  padding: 0.5em;
 }
 .logo {
   line-height: 60px;
@@ -93,6 +96,10 @@ button {
 .divider {
   border-bottom: 2px solid var(--primary-color);
 }
+
+.hide {
+  display: none !important;
+}
 /* End utility classes */
 
 /* Cart icon styles */
@@ -111,6 +118,38 @@ button {
 
 /* End cart icon styles */
 
+/* product grid styles */
+.product-grid {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  color: var(--dark-grey);
+  padding-left: 0;
+}
+
+.product-grid > li {
+  width: 150px;
+  /* border: 1px solid var(--light-grey); */
+  padding: 0.5em;
+  margin: 1em;
+}
+.product-grid h2 {
+  margin: 0;
+
+  font-size: 1.2em;
+}
+.product-grid a {
+  text-decoration: none;
+}
+.product-grid a:link,
+.product-grid a:visited {
+  color: var(--dark-grey);
+}
+.product-grid a:hover {
+  text-decoration: underline;
+}
 .mission {
   padding: 0 0.5em;
   /* margin: 0.5em 0; */
@@ -120,6 +159,9 @@ button {
 }
 .products {
   padding: 0.5em;
+}
+.title {
+  text-transform: capitalize;
 }
 .product-list {
   display: flex;
@@ -132,6 +174,27 @@ button {
   text-decoration: none;
   color: var(--dark-grey);
 }
+
+.list-total {
+  text-align: right;
+}
+.list-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5em;
+}
+.list-footer > a {
+  /* display: block; */
+  padding: 0.3em 0.5em;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  border-radius: 5px;
+}
+.list-footer a:link,
+.list-footer a:visited {
+  color: var(--dark-grey);
+}
 /* Styles for product lists */
 .product-card {
   flex: 1 1 45%;
@@ -139,11 +202,13 @@ button {
   padding: 0.5em;
   border: 1px solid var(--light-grey);
   max-width: 250px;
+  text-align: center;
 }
 .product-card h2,
 .product-card h3,
 .product-card p {
   margin: 0.5em 0;
+  text-align: left;
 }
 
 .card__brand {
@@ -218,4 +283,81 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+/* checkout styles */
+.checkout-form {
+  padding: 0.5em;
+}
+.checkout-form label {
+  display: block;
+}
+.checkout-form input {
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.checkout-summary > ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+.checkout-summary li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.checkout-summary input {
+  width: 25%;
+  font-size: 1em;
+}
+
+/* alert styles */
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  background-color: var(--primary-color);
+  border: 1px solid darkorange;
+}
+.alert > p {
+  margin: 0;
+}
+
+a > h6 {
+  position: relative;
+  bottom: 40px;
+  left: 10px;
+  background-color: #f0a868;
+  font-size: 20px;
+  text-decoration: none;
+  margin: 0;
+  border-radius: 50%;
+}
+
+.clearance {
+  margin: 0;
+  background-color: yellow;
+}
+
+.discount,
+.discount-rate {
+  display: flex;
+  background-color: #f0a868;
+}
+
+.discount {
+  float: right;
+  padding: 2px;
+}
+
+.discount-rate {
+  float: left;
+  margin: 0;
+  margin-right: 10px;
+}
+
+.product-card__price {
+  display: flex;
+  float: left;
 }

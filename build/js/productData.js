@@ -1,1 +1,30 @@
-var h=(r,t,n)=>new Promise((e,c)=>{var d=o=>{try{s(n.next(o))}catch(a){c(a)}},i=o=>{try{s(n.throw(o))}catch(a){c(a)}},s=o=>o.done?e(o.value):Promise.resolve(o.value).then(d,i);s((n=n.apply(r,t)).next())});function u(r){if(r.ok)return r.json();throw new Error("Bad Response")}let g=[];export default class f{constructor(t){this.category=t,this.path=`../json/${this.category}.json`}getData(){return fetch(this.path).then(u).then(t=>t)}findProductById(t){return h(this,null,function*(){const n=yield this.getData();return n.find(e=>e.Id===t)})}}
+const baseURL = 'http://server-nodejs.cit.byui.edu:3000/';
+
+function convertToJson(res) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error('Bad Response');
+  }
+}
+
+// or should we do it this way?
+// async function getProductsDataAwait() {
+//   products = await fetch("../json/tents.json").then(convertToJson);
+// }
+
+let products = [];
+
+export default class ProductData {
+  async getData(category) {
+    return fetch(baseURL + `products/search/${category}`)
+      .then(convertToJson)
+      .then((data) => data.Result);
+  }
+
+  async findProductById(id) {
+    return await fetch(baseURL + `product/${id}`)
+      .then(convertToJson)
+      .then((data) => data.Result);
+  }
+}

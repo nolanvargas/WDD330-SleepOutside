@@ -1,16 +1,14 @@
-// wrapper for querySelector...returns matching element
-export function qs(selector, parent = document) {
-  return parent.querySelector(selector);
-}
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
-
 function convertToText(res) {
   if (res.ok) {
     return res.text();
   } else {
-    throw new Error('Bad response');
+    throw new Error("Bad Response");
   }
+}
+
+// wrapper for querySelector...returns matching element
+export function qs(selector) {
+  return document.querySelector(selector);
 }
 
 // retrieve data from localstorage
@@ -23,17 +21,17 @@ export function setLocalStorage(key, data) {
 }
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener('touchend', (event) => {
+  qs(selector).addEventListener("touchend", (event) => {
     event.preventDefault();
     callback();
   });
-  qs(selector).addEventListener('click', callback);
+  qs(selector).addEventListener("click", callback);
 }
 
-export function getParams() {
+export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  return urlParams.get('product');
+  return urlParams.get(param);
 }
 
 export function renderListWithTemplate(template, parent, list, callback) {
@@ -54,19 +52,62 @@ export function renderWithTemplate(template, parent, data, callback) {
 
 export async function loadTemplate(path) {
   const html = await fetch(path).then(convertToText);
-  const template = document.createElement('template');
+  const template = document.createElement("template");
   template.innerHTML = html;
   return template;
 }
-debugger
+
+// load the header and footer
 export async function loadHeaderFooter() {
-  const header = await loadTemplate('../partials/header.html');
-  const footer = await loadTemplate('../partials/footer.html');
-
-  console.log("i am being called twice");
-  const headerElement = document.getElementById('main-header');
-  const footerElement = document.getElementById('main-footer');
-
+  const header = await loadTemplate("../partials/header.html");
+  const footer = await loadTemplate("../partials/footer.html");
+  const headerElement = document.getElementById("main-header");
+  const footerElement = document.getElementById("main-footer");
   renderWithTemplate(header, headerElement);
   renderWithTemplate(footer, footerElement);
+  //update the cart icon
+  updateCartIcon();
+}
+
+export function updateCartIcon() {
+  const cartItemAmount = document.getElementById("amountInCart");
+  const numItems = getLocalStorage("so-cart");
+  cartItemAmount.innerHTML = numItems.length;
+}
+
+export function alertMessage(message, scroll = true, duration = 3000) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<p>${message}</p><span>X</span>`;
+
+  alert.addEventListener("click", function (e) {
+    if (e.target.tagName == "SPAN") {
+      main.removeChild(this);
+    }
+  });
+  const main = document.querySelector("main");
+  main.prepend(alert);
+  // make sure they see the alert by scrolling to the top of the window
+  //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
+  if (scroll) window.scrollTo(0, 0);
+
+  // left this here to show how you could remove the alert automatically after a certain amount of time.
+  // setTimeout(function () {
+  //   main.removeChild(alert);
+  // }, duration);
+}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+}
+
+export function calculateDiscount(product) {
+  const discount = product.SuggestedRetailPrice - product.ListPrice;
+  if (discount != 0) {
+    const discountRate = Math.round(
+      (discount / product.SuggestedRetailPrice) * 100
+    );
+    return discountRate;
+  }
 }

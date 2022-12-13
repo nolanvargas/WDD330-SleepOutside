@@ -1,1 +1,9 @@
-import a from"./productData.js";import{getParams as c}from"./utils.js";import d from"./productDetails.js";const e=new a("tents"),n=c("product"),s=new d(n,e);s.init(),button=document.getElementById("addToCart"),button.addEventListener("click",()=>{console.log("hello")});function i(t,o){localStorage.setItem(t,JSON.stringify(o))}function p(t){const o=products.find(r=>r.Id===t.target.dataset.id);i("so-cart",o)}
+import ExternalServices from "./ExternalServices.js";
+import ProductDetails from "./productDetails.js";
+import { getParam } from "./utils.js";
+
+const productId = getParam("product");
+const dataSource = new ExternalServices();
+
+const product = new ProductDetails(productId, dataSource);
+product.init();
