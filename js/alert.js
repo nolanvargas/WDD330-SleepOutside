@@ -1,0 +1,1 @@
+export default class l{init(){fetch("/json/alerts.json").then(e=>e.json()).then(e=>{console.log(e)})}buildAlert(e){let o='<section class="alert-list">';if(e.length>0){const t=e.map(n=>{let c=`<p style="background-color:${n.background};color:${n.color}">${n.message}</p>`});o+=t.join(""),o+="</section>",document.getElementsByTagName("main").appendChild(o)}}}
